@@ -1,4 +1,3 @@
-# importing kivy dependencies:
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.image import Image
@@ -7,7 +6,6 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.clock import Clock
 from kivy.graphics.texture import Texture
-from kivy.logger import Logger
 
 import cv2
 import tensorflow as tf
@@ -25,7 +23,6 @@ class CamApp(App):
         self.verification_text = Label(
             text="Verification Uninitiated", size_hint=(1, .1))
 
-        # adding items
         layout = BoxLayout(orientation='vertical')
         layout.add_widget(self.webcam)
         layout.add_widget(self.button)
@@ -44,7 +41,7 @@ class CamApp(App):
 
 # this function will run continuously to capture webcam feed.
     def update(self, *args):
-        # read from openCV
+
         ret, frame = self.capture.read()
         frame = frame[120:120+250, 200:200+250, :]
 
@@ -79,7 +76,7 @@ class CamApp(App):
             input_img = self.preprocess(os.path.join('application_data', 'input_image', 'input_image.jpg'))
             validation_img = self.preprocess(os.path.join('application_data', 'verification_images', image))
             print("Before predicting using model.")
-            # Expand dimensions to add batch size
+
             result = self.model.predict(list(np.expand_dims([input_img, validation_img], axis=1)))
             results.append(result)
 
@@ -93,7 +90,6 @@ class CamApp(App):
         self.verification_text.text = 'Verified' if verified else 'Not Verified'
 
         return results, verified
-
 
 if __name__ == '__main__':
     CamApp().run()
