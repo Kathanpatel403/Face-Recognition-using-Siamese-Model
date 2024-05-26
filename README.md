@@ -12,12 +12,9 @@ To install the required dependencies, follow these steps:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/siamese-face-verification.git
+git clone https://github.com/Kathanpatel403/Face-Recognition-using-Siamese-Network.git
 
-# Navigate to the project directory
-cd siamese-face-verification
-
-# Install dependencies
+# Open the folder and install dependencies
 pip install -r requirements.txt
 ```
 
